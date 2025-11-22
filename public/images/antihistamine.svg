@@ -1,0 +1,8 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#fce7f3"/>
+  <circle cx="150" cy="180" r="40" fill="#ec4899"/>
+  <circle cx="250" cy="180" r="40" fill="#ec4899"/>
+  <circle cx="200" cy="240" r="40" fill="#ec4899"/>
+  <text x="200" y="340" font-family="Arial" font-size="18" fill="#9f1239" text-anchor="middle" font-weight="bold">Antihistamínico</text>
+  <text x="200" y="365" font-family="Arial" font-size="14" fill="#9f1239" text-anchor="middle">Pastillas</text>
+</svg>

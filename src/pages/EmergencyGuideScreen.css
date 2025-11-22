@@ -1,0 +1,169 @@
+.emergency-guide-screen {
+  min-height: 100vh;
+  padding: 2rem 0;
+  background-color: var(--background);
+}
+
+.emergency-guide-header {
+  margin-bottom: 2rem;
+}
+
+.emergency-guide-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.emergency-guide-title h1 {
+  font-size: 2.5rem;
+  color: var(--danger);
+  margin-bottom: 0.5rem;
+}
+
+.emergency-guide-title h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.emergency-warnings {
+  margin-bottom: 2rem;
+}
+
+.emergency-warnings h3 {
+  font-size: 1.25rem;
+  color: var(--danger);
+  margin-bottom: 1rem;
+}
+
+.emergency-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.emergency-step {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 2rem !important;
+  border-left: 4px solid var(--primary);
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.step-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.video-section {
+  margin-bottom: 2rem;
+}
+
+.video-section h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.video-section p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.step-video {
+  margin-top: 1rem;
+}
+
+.step-image {
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.step-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.emergency-footer {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.emergency-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.loading-state p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .emergency-guide-screen {
+    padding: 1rem 0;
+  }
+
+  .emergency-guide-title h1 {
+    font-size: 2rem;
+  }
+
+  .emergency-guide-title h2 {
+    font-size: 1.25rem;
+  }
+
+  .emergency-step {
+    flex-direction: column;
+    padding: 1.5rem !important;
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  .emergency-actions {
+    flex-direction: column;
+  }
+
+  .emergency-actions button {
+    width: 100%;
+  }
+}

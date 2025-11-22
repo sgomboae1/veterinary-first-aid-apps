@@ -1,0 +1,11 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#fef3c7"/>
+  <rect x="120" y="140" width="160" height="120" rx="60" fill="#f59e0b"/>
+  <rect x="130" y="150" width="140" height="100" rx="50" fill="#fbbf24"/>
+  <circle cx="170" cy="190" r="8" fill="#92400e"/>
+  <circle cx="230" cy="190" r="8" fill="#92400e"/>
+  <path d="M 170 210 Q 200 230 230 210" stroke="#92400e" stroke-width="4" fill="none"/>
+  <text x="200" y="330" font-family="Arial" font-size="18" fill="#92400e" text-anchor="middle" font-weight="bold">Bravecto</text>
+  <text x="200" y="355" font-family="Arial" font-size="14" fill="#92400e" text-anchor="middle">Antiparasitario</text>
+  <text x="200" y="375" font-family="Arial" font-size="12" fill="#92400e" text-anchor="middle">4.5-10 Kg</text>
+</svg>

@@ -1,0 +1,67 @@
+.video-test-screen {
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.test-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.test-header h1 {
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.test-header p {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+}
+
+.test-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.video-description {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.video-wrapper {
+  margin: 1.5rem 0;
+}
+
+.video-info {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.video-info small {
+  color: var(--text-secondary);
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.test-instructions {
+  margin-top: 3rem;
+}
+
+.test-instructions ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.test-instructions li {
+  margin: 0.5rem 0;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .test-videos-grid {
+    grid-template-columns: 1fr;
+  }
+}

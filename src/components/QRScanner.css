@@ -1,0 +1,147 @@
+.qr-scanner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.qr-scanner-video {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #000;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-scanner-video video {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.qr-scanner-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.qr-scanner-instructions {
+  text-align: center;
+  max-width: 400px;
+}
+
+.qr-scanner-instructions p {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.qr-scanner-tip {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Camera Permission Request */
+.camera-permission-request,
+.camera-permission-denied {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: var(--radius-lg);
+  border: 2px solid #bae6fd;
+  max-width: 500px;
+  text-align: center;
+}
+
+.camera-permission-denied {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border-color: #fecaca;
+}
+
+.permission-icon {
+  font-size: 4rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.camera-permission-request h3,
+.camera-permission-denied h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+}
+
+.camera-permission-request p,
+.camera-permission-denied p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.permission-note {
+  font-size: 0.875rem;
+  padding: 1rem;
+  background: white;
+  border-radius: var(--radius-md);
+  border-left: 4px solid #3b82f6;
+}
+
+.permission-instructions {
+  text-align: left;
+  width: 100%;
+  padding: 1rem;
+  background: white;
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+}
+
+.permission-instructions h4 {
+  margin: 0 0 0.75rem 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.permission-instructions ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.permission-instructions li {
+  margin: 0.5rem 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .qr-scanner-video {
+    max-width: 100%;
+  }
+
+  .qr-scanner-controls button {
+    width: 100%;
+  }
+
+  .camera-permission-request,
+  .camera-permission-denied {
+    padding: 2rem 1.5rem;
+  }
+
+  .permission-icon {
+    font-size: 3rem;
+  }
+}

@@ -1,0 +1,8 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#f1f5f9"/>
+  <circle cx="200" cy="200" r="100" fill="#1e293b"/>
+  <circle cx="180" cy="180" r="20" fill="#334155" opacity="0.7"/>
+  <circle cx="220" cy="190" r="25" fill="#334155" opacity="0.7"/>
+  <circle cx="200" cy="220" r="30" fill="#334155" opacity="0.7"/>
+  <text x="200" y="360" font-family="Arial" font-size="20" fill="#1e293b" text-anchor="middle" font-weight="bold">Carbón Activado</text>
+</svg>
