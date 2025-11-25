@@ -2,6 +2,8 @@
 
 Aplicación web progresiva (PWA) multiplataforma para gestionar un botiquín de primeros auxilios veterinario con acceso mediante códigos QR.
 
+**Ahora con soporte para videos de TikTok, Facebook Reels, Instagram Reels y YouTube Shorts!**
+
 ## ✨ Características
 
 - 📱 **Multiplataforma**: Funciona en móviles, tablets y ordenadores
