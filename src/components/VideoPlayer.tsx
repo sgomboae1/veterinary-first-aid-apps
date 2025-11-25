@@ -7,30 +7,116 @@ interface VideoPlayerProps {
   title?: string;
 }
 
+type VideoType = 'youtube' | 'tiktok' | 'facebook' | 'instagram' | 'unknown';
+
 export function VideoPlayer({ videoUrl, thumbnail, title }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Detectar si es un video de YouTube
-  const isYouTube = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
-  
-  // Extraer ID de YouTube
-  const getYouTubeId = (url: string): string | null => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-    return match && match[2].length === 11 ? match[2] : null;
+  // Detectar tipo de video
+  const detectVideoType = (url: string): VideoType => {
+    if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube';
+    if (url.includes('tiktok.com')) return 'tiktok';
+    if (url.includes('facebook.com') || url.includes('fb.watch')) return 'facebook';
+    if (url.includes('instagram.com')) return 'instagram';
+    return 'unknown';
   };
 
-  const youtubeId = isYouTube ? getYouTubeId(videoUrl) : null;
-  const embedUrl = youtubeId ? `https://www.youtube.com/embed/${youtubeId}` : videoUrl;
-  const defaultThumbnail = youtubeId 
-    ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
-    : thumbnail;
+  // Extraer ID de YouTube (videos normales, shorts, reels)
+  const getYouTubeId = (url: string): string | null => {
+    const patterns = [
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^#&?]*)/,
+      /youtube\.com\/shorts\/([^#&?]*)/,
+      /youtube\.com\/embed\/([^#&?]*)/,
+    ];
+    
+    for (const pattern of patterns) {
+      const match = url.match(pattern);
+      if (match && match[1]) return match[1];
+    }
+    return null;
+  };
+
+  // Extraer ID de TikTok
+  const getTikTokId = (url: string): string | null => {
+    const match = url.match(/tiktok\.com\/@[^/]+\/video\/(\d+)/);
+    return match ? match[1] : null;
+  };
+
+  // Extraer ID de Facebook
+  const getFacebookId = (url: string): string | null => {
+    const patterns = [
+      /facebook\.com\/reel\/(\d+)/,
+      /facebook\.com\/watch\/?\?v=(\d+)/,
+      /fb\.watch\/([^/?]+)/,
+    ];
+    
+    for (const pattern of patterns) {
+      const match = url.match(pattern);
+      if (match && match[1]) return match[1];
+    }
+    return null;
+  };
+
+  // Extraer ID de Instagram
+  const getInstagramId = (url: string): string | null => {
+    const match = url.match(/instagram\.com\/(?:p|reel)\/([^/?]+)/);
+    return match ? match[1] : null;
+  };
+
+  // Generar URL de embed según la plataforma
+  const getEmbedUrl = (): string => {
+    const videoType = detectVideoType(videoUrl);
+
+    switch (videoType) {
+      case 'youtube': {
+        const id = getYouTubeId(videoUrl);
+        return id ? `https://www.youtube.com/embed/${id}` : videoUrl;
+      }
+      case 'tiktok': {
+        const id = getTikTokId(videoUrl);
+        return id ? `https://www.tiktok.com/embed/v2/${id}` : videoUrl;
+      }
+      case 'facebook': {
+        const id = getFacebookId(videoUrl);
+        if (id) {
+          const encodedUrl = encodeURIComponent(videoUrl);
+          return `https://www.facebook.com/plugins/video.php?href=${encodedUrl}&show_text=false`;
+        }
+        return videoUrl;
+      }
+      case 'instagram': {
+        const id = getInstagramId(videoUrl);
+        return id ? `https://www.instagram.com/p/${id}/embed` : videoUrl;
+      }
+      default:
+        return videoUrl;
+    }
+  };
+
+  // Generar thumbnail según la plataforma
+  const getThumbnail = (): string => {
+    if (thumbnail) return thumbnail;
+
+    const videoType = detectVideoType(videoUrl);
+    
+    if (videoType === 'youtube') {
+      const id = getYouTubeId(videoUrl);
+      return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : 'https://via.placeholder.com/640x360?text=Video';
+    }
+
+    // Para otras plataformas, usar placeholder genérico
+    return 'https://via.placeholder.com/640x360?text=Video';
+  };
+
+  const embedUrl = getEmbedUrl();
+  const defaultThumbnail = getThumbnail();
+  const videoType = detectVideoType(videoUrl);
 
   if (!isPlaying) {
     return (
       <div className="video-player-preview" onClick={() => setIsPlaying(true)}>
         <img 
-          src={defaultThumbnail || 'https://via.placeholder.com/640x360?text=Video'} 
+          src={defaultThumbnail} 
           alt={title || 'Video instructivo'}
           className="video-thumbnail"
         />
@@ -41,6 +127,7 @@ export function VideoPlayer({ videoUrl, thumbnail, title }: VideoPlayerProps) {
           </svg>
         </div>
         {title && <div className="video-title">{title}</div>}
+        <div className="video-platform-badge">{videoType.toUpperCase()}</div>
       </div>
     );
   }
@@ -48,12 +135,13 @@ export function VideoPlayer({ videoUrl, thumbnail, title }: VideoPlayerProps) {
   return (
     <div className="video-player-container">
       <iframe
-        src={`${embedUrl}?autoplay=1`}
+        src={`${embedUrl}${videoType === 'youtube' ? '?autoplay=1' : ''}`}
         title={title || 'Video instructivo'}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
         className="video-iframe"
+        scrolling="no"
       ></iframe>
     </div>
   );
