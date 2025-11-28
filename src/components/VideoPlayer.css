@@ -29,6 +29,12 @@
   transform: translate(-50%, -50%);
   transition: transform 0.2s;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .video-player-preview:hover .video-play-button {

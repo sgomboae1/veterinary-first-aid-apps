@@ -112,30 +112,55 @@ export function VideoPlayer({ videoUrl, thumbnail, title }: VideoPlayerProps) {
   const defaultThumbnail = getThumbnail();
   const videoType = detectVideoType(videoUrl);
 
+  // Plataformas que no soportan embed bien - abrir en nueva pestaña
+  const shouldOpenInNewTab = videoType === 'tiktok' || videoType === 'instagram' || videoType === 'facebook';
+
+  const handleClick = () => {
+    if (shouldOpenInNewTab) {
+      window.open(videoUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      setIsPlaying(true);
+    }
+  };
+
   if (!isPlaying) {
     return (
-      <div className="video-player-preview" onClick={() => setIsPlaying(true)}>
+      <div className="video-player-preview" onClick={handleClick}>
         <img 
           src={defaultThumbnail} 
           alt={title || 'Video instructivo'}
           className="video-thumbnail"
         />
         <div className="video-play-button">
-          <svg width="68" height="48" viewBox="0 0 68 48">
-            <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path>
-            <path d="M 45,24 27,14 27,34" fill="#fff"></path>
-          </svg>
+          {shouldOpenInNewTab ? (
+            // Icono de enlace externo para redes sociales
+            <svg width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          ) : (
+            // Icono de play para YouTube
+            <svg width="68" height="48" viewBox="0 0 68 48">
+              <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path>
+              <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+            </svg>
+          )}
         </div>
         {title && <div className="video-title">{title}</div>}
-        <div className="video-platform-badge">{videoType.toUpperCase()}</div>
+        <div className="video-platform-badge">
+          {videoType.toUpperCase()}
+          {shouldOpenInNewTab && ' ↗'}
+        </div>
       </div>
     );
   }
 
+  // Solo YouTube se reproduce en iframe
   return (
     <div className="video-player-container">
       <iframe
-        src={`${embedUrl}${videoType === 'youtube' ? '?autoplay=1' : ''}`}
+        src={`${embedUrl}?autoplay=1`}
         title={title || 'Video instructivo'}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

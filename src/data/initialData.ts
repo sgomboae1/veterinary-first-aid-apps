@@ -319,34 +319,4 @@ export const initialItems: FirstAidItem[] = [
     ]
   },
 
-  // 9. Bravecto
-  {
-    id: 'bravecto',
-    name: 'Antiparasitarios (Bravecto Masticable 4.5-10 Kg)',
-    category: Category.ANTIPARASITICS,
-    image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=400&fit=crop',
-    qrCode: `${QR_CODE_PREFIX}bravecto`,
-    description: 'Tableta masticable para control de pulgas y garrapatas (12 semanas).',
-    laboratory: 'LABORATORIO MSD',
-    composition: 'Fluralaner',
-    function: 'Control de pulgas y garrapatas. Tratamiento de DAPP.',
-    indications: ['Control de pulgas', 'Control de garrapatas', 'Prevención de infestaciones'],
-    contraindications: ['Hipersensibilidad', 'Cachorros menores de 8 semanas'],
-    dosage: { frequency: 'Cada 3 meses', general: '1 tableta cada 3 meses' },
-    administration: {
-      route: AdministrationRoute.ORAL,
-      instructions: ['Dar vía oral', 'Puede darse con comida', 'Confirmar que tragó']
-    },
-    precautions: ['Lavar manos después', 'Almacenar entre 15-30°C'],
-    sideEffects: ['Diarrea ocasional', 'Vómito ocasional', 'Inapetencia'],
-    warnings: ['Solo para perros 4.5-10 kg', 'Seguro desde 8 semanas'],
-    applicableSpecies: [Species.DOG],
-    instructionalVideo: 'https://www.youtube.com/watch?v=9bZkp7q19f0',
-    videoThumbnail: 'https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg',
-    emergencyGuide: [
-      { stepNumber: 1, title: 'Verificar peso', description: 'Confirmar que pesa 4.5-10 kg.' },
-      { stepNumber: 2, title: 'Administrar', description: 'Dar tableta, confirmar que tragó.' },
-      { stepNumber: 3, title: 'Marcar calendario', description: 'Repetir en 3 meses.' }
-    ]
-  }
 ];

@@ -31,6 +31,6 @@ export const QR_CODE_PREFIX = 'VET-AID-';
 
 // Configuración de la base de datos
 export const DB_NAME = 'VeterinaryFirstAidDB';
-export const DB_VERSION = 5;
+export const DB_VERSION = 6;
 export const ITEMS_STORE_NAME = 'items';
 export const PREFERENCES_STORE_NAME = 'userPreferences';

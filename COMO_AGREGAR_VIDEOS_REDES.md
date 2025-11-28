@@ -166,22 +166,26 @@ git push
 
 ### TikTok
 - ✅ Funciona con enlaces públicos
+- 🔗 **Se abre en nueva pestaña** (TikTok no permite embed confiable)
 - ❌ No funciona con videos privados
-- ⚠️ Algunos videos pueden tener restricciones de embed
+- ℹ️ Al hacer clic, se abrirá la app de TikTok o el sitio web
 
 ### Facebook
 - ✅ Funciona con videos públicos
+- 🔗 **Se abre en nueva pestaña** (Facebook tiene restricciones de embed)
 - ❌ No funciona con videos privados o de grupos cerrados
-- ⚠️ Requiere que el video permita ser embebido
+- ℹ️ Al hacer clic, se abrirá Facebook
 
 ### Instagram
 - ✅ Funciona con posts y reels públicos
+- 🔗 **Se abre en nueva pestaña** (Instagram tiene restricciones de embed)
 - ❌ No funciona con cuentas privadas
-- ⚠️ Algunos videos pueden tener restricciones
+- ℹ️ Al hacer clic, se abrirá Instagram
 
 ### YouTube
 - ✅ Funciona con todos los videos públicos
 - ✅ Funciona con Shorts
+- ✅ **Se reproduce en la aplicación** (embed completo)
 - ❌ No funciona con videos privados o no listados
 
 ## 🎨 Características
