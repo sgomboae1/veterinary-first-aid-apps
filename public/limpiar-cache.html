@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpiar Caché - Botiquín Veterinario</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .status {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .instructions {
+            text-align: left;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f4ff;
+            border-radius: 10px;
+        }
+
+        .instructions h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Actualizar Aplicación</h1>
+        
+        <div id="status" class="status loading">
+            <div class="spinner"></div>
+            <p>Limpiando datos antiguos...</p>
+        </div>
+
+        <div id="actions" style="display: none;">
+            <button onclick="limpiarTodo()">🗑️ Limpiar Todo</button>
+            <button onclick="volverApp()">🏠 Volver a la App</button>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 ¿Por qué no veo los cambios?</h3>
+            <ol>
+                <li><strong>Caché del navegador:</strong> Tu navegador guarda los datos antiguos</li>
+                <li><strong>IndexedDB:</strong> La base de datos local tiene la versión anterior</li>
+                <li><strong>Service Worker:</strong> El PWA puede estar usando archivos antiguos</li>
+            </ol>
+
+            <h3 style="margin-top: 20px;">✅ Solución automática:</h3>
+            <p>Esta página limpiará automáticamente todos los datos antiguos y recargará la aplicación con la versión más reciente.</p>
+        </div>
+    </div>
+
+    <script>
+        const DB_NAME = 'VeterinaryFirstAidDB';
+        const APP_URL = '/';
+
+        async function limpiarTodo() {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'status loading';
+            statusDiv.innerHTML = '<div class="spinner"></div><p>Limpiando datos...</p>';
+
+            try {
+                // 1. Eliminar IndexedDB
+                await new Promise((resolve, reject) => {
+                    const request = indexedDB.deleteDatabase(DB_NAME);
+                    request.onsuccess = () => {
+                        console.log('✓ IndexedDB eliminada');
+                        resolve();
+                    };
+                    request.onerror = () => reject(request.error);
+                    request.onblocked = () => {
+                        console.log('⚠️ IndexedDB bloqueada, intentando de nuevo...');
+                        setTimeout(resolve, 1000);
+                    };
+                });
+
+                // 2. Limpiar localStorage
+                localStorage.clear();
+                console.log('✓ localStorage limpiado');
+
+                // 3. Limpiar sessionStorage
+                sessionStorage.clear();
+                console.log('✓ sessionStorage limpiado');
+
+                // 4. Desregistrar Service Workers
+                if ('serviceWorker' in navigator) {
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    for (let registration of registrations) {
+                        await registration.unregister();
+                        console.log('✓ Service Worker desregistrado');
+                    }
+                }
+
+                // 5. Limpiar caché
+                if ('caches' in window) {
+                    const cacheNames = await caches.keys();
+                    for (let cacheName of cacheNames) {
+                        await caches.delete(cacheName);
+                        console.log('✓ Caché eliminado:', cacheName);
+                    }
+                }
+
+                // Éxito
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = `
+                    <h2>✅ ¡Limpieza Completada!</h2>
+                    <p>Todos los datos antiguos han sido eliminados.</p>
+                    <p style="margin-top: 15px;">Redirigiendo a la aplicación en 3 segundos...</p>
+                `;
+
+                // Redirigir después de 3 segundos
+                setTimeout(() => {
+                    window.location.href = APP_URL;
+                }, 3000);
+
+            } catch (error) {
+                console.error('Error al limpiar:', error);
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `
+                    <h2>❌ Error</h2>
+                    <p>${error.message}</p>
+                    <p style="margin-top: 15px;">Intenta limpiar manualmente con Ctrl+Shift+Delete</p>
+                `;
+                document.getElementById('actions').style.display = 'block';
+            }
+        }
+
+        function volverApp() {
+            window.location.href = APP_URL;
+        }
+
+        // Ejecutar automáticamente al cargar
+        window.addEventListener('load', () => {
+            setTimeout(limpiarTodo, 1000);
+        });
+    </script>
+</body>
+</html>
