@@ -161,6 +161,10 @@
             <button onclick="copiarURL()">📋 Copiar URL</button>
         </div>
 
+        <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 10px; color: #856404;">
+            <strong>💡 Tip:</strong> Si el botón de descarga no funciona, haz <strong>clic derecho en el QR</strong> → <strong>"Guardar imagen como..."</strong>
+        </div>
+
         <div class="info">
             <h3>📱 Cómo usar este QR:</h3>
             <ul>
@@ -200,12 +204,37 @@
 
         // Función para descargar el QR
         function descargarQR() {
-            const canvas = document.querySelector('#qrcode canvas');
-            const url = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.download = 'botiquin-veterinario-qr.png';
-            link.href = url;
-            link.click();
+            try {
+                const canvas = document.querySelector('#qrcode canvas');
+                
+                // Método 1: Intentar descarga directa
+                canvas.toBlob(function(blob) {
+                    if (blob) {
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.download = 'botiquin-veterinario-qr.png';
+                        link.href = url;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
+                        alert('✓ QR descargado exitosamente!');
+                    } else {
+                        // Método 2: Fallback con dataURL
+                        const dataUrl = canvas.toDataURL('image/png');
+                        const link = document.createElement('a');
+                        link.download = 'botiquin-veterinario-qr.png';
+                        link.href = dataUrl;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        alert('✓ QR descargado exitosamente!');
+                    }
+                }, 'image/png');
+            } catch (error) {
+                console.error('Error al descargar:', error);
+                alert('❌ No se pudo descargar automáticamente.\n\n💡 Solución: Haz clic derecho en el QR → "Guardar imagen como..."');
+            }
         }
 
         // Función para imprimir el QR
