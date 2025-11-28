@@ -69,8 +69,7 @@ export const initialItems: FirstAidItem[] = [
     ],
     applicableSpecies: [Species.DOG],
     restrictedSpecies: [Species.CAT],
-    instructionalVideo: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    videoThumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+    instructionalVideo: 'https://vt.tiktok.com/ZSyb3obNj/',
     emergencyGuide: [
       { 
         stepNumber: 1, 
@@ -136,8 +135,7 @@ export const initialItems: FirstAidItem[] = [
     sideEffects: ['Heces negras (normal)'],
     warnings: ['SOLO PARA GATOS', 'NO usar con sustancias corrosivas'],
     applicableSpecies: [Species.CAT],
-    instructionalVideo: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
-    videoThumbnail: 'https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg',
+    instructionalVideo: 'https://www.youtube.com/shorts/xgDpsCuHM1w',
     emergencyGuide: [
       { stepNumber: 1, title: 'Verificar consciencia', description: 'El gato debe poder tragar.' },
       { stepNumber: 2, title: 'Preparar mezcla', description: 'Disolver 1 parte en 5 de agua.' }
@@ -165,8 +163,7 @@ export const initialItems: FirstAidItem[] = [
     sideEffects: ['Irritación leve en piel sensible'],
     warnings: ['NO usar en heridas profundas sin diluir'],
     applicableSpecies: [Species.DOG, Species.CAT],
-    instructionalVideo: 'https://www.youtube.com/watch?v=9bZkp7q19f0',
-    videoThumbnail: 'https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg',
+    instructionalVideo: 'https://www.youtube.com/watch?v=evHeNTmbLGY',
     emergencyGuide: [
       { stepNumber: 1, title: 'Limpiar herida', description: 'Lavar con agua limpia.' },
       { stepNumber: 2, title: 'Aplicar con gasa', description: 'Usar gasa estéril.' }
@@ -194,8 +191,7 @@ export const initialItems: FirstAidItem[] = [
     sideEffects: [],
     warnings: ['Si no mejora en 24 horas, consultar veterinario'],
     applicableSpecies: [Species.DOG, Species.CAT],
-    instructionalVideo: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    videoThumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+    instructionalVideo: 'https://www.youtube.com/shorts/r37IPqVdTnA',
     emergencyGuide: [
       { stepNumber: 1, title: 'Evaluar deshidratación', description: 'Verificar encías secas.' },
       { stepNumber: 2, title: 'Administrar', description: 'Usar 5-10 ml por kg.' }
@@ -223,8 +219,7 @@ export const initialItems: FirstAidItem[] = [
     sideEffects: ['Somnolencia', 'Boca seca'],
     warnings: ['Consultar veterinario antes de usar'],
     applicableSpecies: [Species.DOG, Species.CAT],
-    instructionalVideo: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
-    videoThumbnail: 'https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg',
+    instructionalVideo: 'https://www.youtube.com/watch?v=ZcH4UVveRGI',
     emergencyGuide: [
       { stepNumber: 1, title: 'Identificar alergia', description: 'Buscar hinchazón, urticaria.' },
       { stepNumber: 2, title: 'Administrar dosis', description: 'Seguir indicaciones de dosificación.' }
@@ -253,8 +248,7 @@ export const initialItems: FirstAidItem[] = [
     sideEffects: ['Acidosis en casos raros', 'Hipopotasemia'],
     warnings: ['Administración IV solo por veterinarios'],
     applicableSpecies: [Species.DOG, Species.CAT, Species.BOVINE, Species.EQUINE, Species.OVINE, Species.CAPRINE, Species.PORCINE],
-    instructionalVideo: 'https://www.youtube.com/watch?v=9bZkp7q19f0',
-    videoThumbnail: 'https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg',
+    instructionalVideo: 'https://www.youtube.com/shorts/teW9F1kpetM',
     emergencyGuide: [
       { stepNumber: 1, title: 'Limpieza ocular', description: 'Humedecer gasa y limpiar desde el lagrimal.' },
       { stepNumber: 2, title: 'Limpieza de heridas', description: 'Irrigar abundantemente.' }
@@ -282,8 +276,7 @@ export const initialItems: FirstAidItem[] = [
     sideEffects: ['Reacción alérgica en casos raros'],
     warnings: ['SOLO PARA PERROS', 'Peligroso si se ingiere'],
     applicableSpecies: [Species.DOG],
-    instructionalVideo: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    videoThumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+    instructionalVideo: 'https://www.youtube.com/shorts/35ICosXHlZg',
     emergencyGuide: [
       { stepNumber: 1, title: 'Evaluar herida', description: 'Si es grave, ir al veterinario primero.' },
       { stepNumber: 2, title: 'Limpiar y aplicar', description: 'Extender capa fina sobre la lesión.' }
@@ -311,8 +304,7 @@ export const initialItems: FirstAidItem[] = [
     sideEffects: ['Enfriamiento excesivo si se aplica sin protección'],
     warnings: ['SIEMPRE usar toalla', 'Máximo 20 minutos'],
     applicableSpecies: [Species.DOG, Species.CAT],
-    instructionalVideo: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
-    videoThumbnail: 'https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg',
+    instructionalVideo: 'https://www.youtube.com/watch?v=fOvLrmNwSvM',
     emergencyGuide: [
       { stepNumber: 1, title: 'Preparar compresa', description: 'Envolver en toalla limpia.' },
       { stepNumber: 2, title: 'Aplicar y supervisar', description: 'Mantener 10-20 minutos máximo.' }
